@@ -1,9 +1,18 @@
-def main():
+import pathlib
+import sys
+
+
+def test_solve():
+    test_input = pathlib.Path(__file__).parent / "test-input.txt"
+    assert solve(test_input) == 11
+
+
+def solve(input_file):
     left = []
     right = []
     diff = 0
 
-    with open("input.txt") as f:
+    with open(input_file) as f:
         for line in f:
             l, r = line.split()
             left.append(int(l))
@@ -14,8 +23,10 @@ def main():
 
     for l, r in zip(left, right, strict=False):
         diff += abs(l - r)
-        print(diff)
+
+    return diff
 
 
 if __name__ == "__main__":
-    main()
+    fname = sys.argv[1]
+    print(solve(fname))

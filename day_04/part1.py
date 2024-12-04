@@ -1,13 +1,18 @@
+import pathlib
 import re
 import sys
 
 
-def main():
-    fname = sys.argv[1]
+def test_solve():
+    test_input = pathlib.Path(__file__).parent / "test-input.txt"
+    assert solve(test_input) == 18
+
+
+def solve(input_file):
     data = []
     num_found = 0
 
-    with open(fname) as f:
+    with open(input_file) as f:
         for line in f:
             data.append(line.strip())
 
@@ -66,8 +71,9 @@ def main():
         matches = xmas_matcher.findall(v)
         num_found += len(matches)
 
-    print(num_found)
+    return num_found
 
 
 if __name__ == "__main__":
-    main()
+    fname = sys.argv[1]
+    print(solve(fname))

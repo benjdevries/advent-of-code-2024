@@ -9,9 +9,13 @@ dependencies = []
 [tool.uv]
 dev-dependencies = [
     "pre-commit>=4.0.1",
+    "pytest>=8.3.4",
     "ruff>=0.8.1",
 ]
 
 [tool.ruff.lint]
 extend-select = ["B", "I", "UP"]
 extend-ignore = ["E741"]
+
+[tool.pytest.ini_options]
+python_files = ["*.py"]

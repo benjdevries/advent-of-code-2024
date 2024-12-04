@@ -1,3 +1,12 @@
+import pathlib
+import sys
+
+
+def test_solve():
+    test_input = pathlib.Path(__file__).parent / "test-input.txt"
+    assert solve(test_input) == 4
+
+
 def is_report_safe(report: list[int]) -> bool:
     """Whether a given reactor report is safe
 
@@ -24,17 +33,18 @@ def is_dampended_report_safe(report: list[int]):
     return False
 
 
-def main():
+def solve(input_file):
     num_safe = 0
 
-    with open("input.txt") as f:
+    with open(input_file) as f:
         for report in f:
             report = [int(x) for x in report.split()]
             if is_dampended_report_safe(report):
                 num_safe += 1
 
-    print(num_safe)
+    return num_safe
 
 
 if __name__ == "__main__":
-    main()
+    fname = sys.argv[1]
+    print(solve(fname))

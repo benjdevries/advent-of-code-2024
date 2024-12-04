@@ -1,12 +1,19 @@
+import pathlib
+import sys
 from collections import Counter
 
 
-def main():
+def test_solve():
+    test_input = pathlib.Path(__file__).parent / "test-input.txt"
+    assert solve(test_input) == 31
+
+
+def solve(input_file):
     left = []
     right = []
     score = 0
 
-    with open("input.txt") as f:
+    with open(input_file) as f:
         for line in f:
             l, r = line.split()
             left.append(int(l))
@@ -16,8 +23,10 @@ def main():
 
     for l in left:
         score += l * right_counts[l]
-        print(score)
+
+    return score
 
 
 if __name__ == "__main__":
-    main()
+    fname = sys.argv[1]
+    print(solve(fname))
