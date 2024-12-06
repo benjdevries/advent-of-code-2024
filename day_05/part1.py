@@ -16,8 +16,8 @@ def is_valid_page(page: int, update: list[int], rules: tuple[int, int]):
     actual_pages_after = set(update[page_idx + 1 :])
 
     return (
-        actual_pages_before < rule_pages_before
-        and actual_pages_after < rule_pages_after
+        actual_pages_before <= rule_pages_before
+        and actual_pages_after <= rule_pages_after
     )
 
 
